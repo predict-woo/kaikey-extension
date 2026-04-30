@@ -9,3 +9,8 @@ out
 .env.*.local
 .parcel-cache
 tsconfig.tsbuildinfo
+
+# editor / agent local config
+.claude
+.idea
+.vscode
