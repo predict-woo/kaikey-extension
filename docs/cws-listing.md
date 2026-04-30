@@ -120,3 +120,39 @@ Do not check (the extension does not collect):
 ```
 https://github.com/predict-woo/kaikey-extension/blob/main/PRIVACY.md
 ```
+
+## Additional listing fields
+
+### Official URL (공식 URL)
+
+Leave as **None**. This field only accepts sites verified to the publishing
+account via Google Search Console.
+
+### Homepage URL (홈페이지 URL)
+
+```
+https://github.com/predict-woo/kaikey-extension
+```
+
+### Support URL (지원 URL)
+
+```
+https://github.com/predict-woo/kaikey-extension/issues
+```
+
+## Testing instructions (테스트 안내)
+
+Leave **Username** and **Password** blank — KAIST accounts cannot be shared
+with reviewers.
+
+### Additional instructions (추가 안내, ≤500 chars)
+
+```
+The extension only works for users who already have a KAIST account, so I cannot provide shared test credentials. KAIST accounts are issued to enrolled members only.
+
+To review:
+1. Install the extension and click its toolbar icon. The popup shows the setup screen with two buttons: "Open registration page" (which opens KAIST's official 2FA registration URL) and "Upload QR screenshot".
+2. Auto-fill and 2FA approval cannot be exercised without a real KAIST account.
+
+Full source code, protocol notes, and the privacy policy are public at https://github.com/predict-woo/kaikey-extension
+```
