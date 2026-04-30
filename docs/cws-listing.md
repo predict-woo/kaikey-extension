@@ -16,6 +16,8 @@ Helps you complete the KAIST SSO push 2FA challenge from your browser using a ke
 ```
 Kaikey is a helper extension for users who already have a KAIST account and have completed KAIST's official 2FA enrollment. It is not affiliated with, endorsed by, or operated by KAIST.
 
+Kaikey has no backend server. All data stays in your browser's local storage; the extension only talks to KAIST's own servers.
+
 What it does
 After you complete KAIST's standard 2FA registration in your own browser, you upload a screenshot of the registration QR code into this extension. Kaikey decodes the code and finishes the same registration handshake that the official mobile app would, so the resulting key is stored locally in your browser instead of on a phone.
 
