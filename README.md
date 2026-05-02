@@ -38,7 +38,22 @@ than what KAIST's normal mobile authenticator would already send.
 
 ## Install
 
-The extension is not on the Chrome Web Store. Use the unpacked build:
+There are two ways to install Kaikey. Most people should pick option 1.
+
+### 1. Chrome Web Store (recommended)
+
+Install from the official listing:
+
+<https://chromewebstore.google.com/detail/kaikey/pfhelcneioomfmnmnagfpmfggknikbaa>
+
+Click "Add to Chrome" and pin Kaikey from the puzzle-piece menu.
+
+### 2. Build from source (for the paranoid)
+
+The Chrome Web Store build is produced from this exact repository at the
+tagged commit, so it is byte-for-byte equivalent to a local `pnpm build`.
+But if you would rather not trust the published artifact, you can build it
+yourself:
 
 ```sh
 pnpm install
