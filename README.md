@@ -67,6 +67,32 @@ Then in Chrome:
 3. Click "Load unpacked" and pick `build/chrome-mv3-prod`.
 4. Pin Kaikey from the puzzle-piece menu.
 
+### 3. Firefox (unsigned, personal use)
+
+Requires Firefox 128+. The extension relies on
+`chrome.scripting.executeScript({ world: "MAIN" })` to drive the SSO
+page's `loginProcMfa()` call, which Firefox ships in 128 and later.
+
+```sh
+pnpm install
+pnpm build:firefox
+```
+
+Then in Firefox:
+
+1. Open `about:debugging#/runtime/this-firefox`.
+2. Click "Load Temporary Add-on…" and pick
+   `build/firefox-mv3-prod/manifest.json`.
+3. Open `about:addons`, find Kaikey, and grant host permissions for
+   `sso.kaist.ac.kr` and `klms.kaist.ac.kr` — Firefox MV3 does not auto-
+   grant host permissions even when they are listed in the manifest.
+
+Temporary add-ons are removed on Firefox restart. For persistent install
+without going through AMO, use Firefox Developer Edition / Nightly / ESR
+with `xpinstall.signatures.required=false`, then package with
+`pnpm dlx web-ext build --source-dir=build/firefox-mv3-prod` and install
+the resulting `.zip` (renamed to `.xpi`).
+
 ## Setup
 
 1. Click the Kaikey icon to open the popup.
@@ -92,6 +118,9 @@ just use the prod build for normal testing.
 
 `pnpm build` produces `build/chrome-mv3-prod`, which has no HMR runtime and no
 loopback connections.
+
+For Firefox, use `pnpm dev:firefox` / `pnpm build:firefox`, which emit
+`build/firefox-mv3-dev` and `build/firefox-mv3-prod` respectively.
 
 ## Project layout
 

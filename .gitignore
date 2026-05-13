@@ -2,6 +2,7 @@ node_modules
 .plasmo
 build
 out
+web-ext-artifacts
 .DS_Store
 *.log
 .env

@@ -6,8 +6,11 @@
   "author": "andyye",
   "scripts": {
     "dev": "plasmo dev",
+    "dev:firefox": "plasmo dev --target=firefox-mv3",
     "build": "plasmo build",
-    "package": "plasmo package"
+    "build:firefox": "plasmo build --target=firefox-mv3",
+    "package": "plasmo package",
+    "package:firefox": "plasmo package --target=firefox-mv3"
   },
   "dependencies": {
     "@plasmohq/storage": "^1.13.0",
@@ -43,6 +46,12 @@
       "storage",
       "activeTab",
       "scripting"
-    ]
+    ],
+    "browser_specific_settings": {
+      "gecko": {
+        "id": "kaikey@local",
+        "strict_min_version": "128.0"
+      }
+    }
   }
 }
