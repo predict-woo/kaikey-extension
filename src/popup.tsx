@@ -15,6 +15,21 @@ import "./style.css"
 const REGISTER_URL =
   "https://sso.kaist.ac.kr/auth/twofactor/mfa/regist/step01"
 
+// Firefox closes the toolbar popup the moment an OS file dialog opens
+// (bug 1292701). To keep the same UI in Firefox we open a windows.create
+// popup for the upload step. Chrome is unaffected so it keeps the
+// original in-popup file picker behavior.
+const IS_FIREFOX = process.env.PLASMO_BROWSER === "firefox"
+
+const WINDOW_MODE =
+  typeof window !== "undefined" &&
+  new URLSearchParams(window.location.search).get("mode") === "window"
+
+const NEED_UPLOAD_WINDOW = IS_FIREFOX && !WINDOW_MODE
+
+const UPLOAD_WINDOW_URL =
+  chrome.runtime.getURL("popup.html") + "?mode=window"
+
 type AuthCheckResult = {
   pending: boolean
   idToken?: string
@@ -61,6 +76,15 @@ function SetupView() {
     chrome.tabs.create({ url: REGISTER_URL })
   }
 
+  const openUploadWindow = () => {
+    chrome.windows.create({
+      url: UPLOAD_WINDOW_URL,
+      type: "popup",
+      width: 380,
+      height: 360
+    })
+  }
+
   const onFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     e.target.value = ""
@@ -75,6 +99,10 @@ function SetupView() {
         qrJson
       })
       if (!reply.ok) throw new Error(reply.error)
+      if (WINDOW_MODE) {
+        window.close()
+        return
+      }
       setSuccess(
         `Registered ${reply.data.display_nm} (${reply.data.site_id}).`
       )
@@ -112,7 +140,11 @@ function SetupView() {
           className="w-full"
           variant="outline"
           disabled={busy}
-          onClick={() => fileRef.current?.click()}>
+          onClick={
+            NEED_UPLOAD_WINDOW
+              ? openUploadWindow
+              : () => fileRef.current?.click()
+          }>
           <Upload className="h-4 w-4" />
           {busy ? "Registering…" : "Upload QR screenshot"}
         </Button>

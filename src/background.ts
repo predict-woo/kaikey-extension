@@ -153,7 +153,11 @@ chrome.runtime.onMessage.addListener((message: Msg, sender, sendResponse) => {
       )
     return true
   }
-  handle(message).then(sendResponse)
+  handle(message)
+    .then(sendResponse)
+    .catch((e) =>
+      sendResponse({ ok: false, error: (e as Error).message || String(e) })
+    )
   return true // async response.
 })
 
