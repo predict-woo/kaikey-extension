@@ -1,7 +1,7 @@
 {
   "name": "kaikey",
   "displayName": "Kaikey",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Kaikey 2FA helper extension",
   "author": "andyye",
   "scripts": {
@@ -21,6 +21,7 @@
     "jsqr": "^1.4.0",
     "lucide-react": "^0.460.0",
     "plasmo": "0.90.5",
+    "qrcode-generator": "^2.0.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "tailwind-merge": "^2.5.4",
@@ -49,8 +50,13 @@
     ],
     "browser_specific_settings": {
       "gecko": {
-        "id": "kaikey@local",
-        "strict_min_version": "128.0"
+        "id": "kaikey@engineer-hama",
+        "strict_min_version": "128.0",
+        "data_collection_permissions": {
+          "required": [
+            "none"
+          ]
+        }
       }
     }
   }
