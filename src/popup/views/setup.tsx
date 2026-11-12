@@ -17,8 +17,13 @@ import { decodeQrFromFile } from "~popup/qr"
 // Chrome is unaffected and keeps the original in-popup file picker.
 // Inlined here (not in ~popup/constants) so dead-code elimination strips
 // the Firefox-only branch from the Chrome bundle.
+// Exception: Chrome on Linux can also close the popup and needs this workaround.
 const NEED_UPLOAD_WINDOW =
-  process.env.PLASMO_BROWSER === "firefox" && !WINDOW_MODE
+  !WINDOW_MODE &&
+  (process.env.PLASMO_BROWSER === "firefox" ||
+    (process.env.PLASMO_BROWSER === "chrome" &&
+      typeof navigator !== "undefined" &&
+      navigator.userAgent.includes("Linux")))
 
 export function SetupView({ onImport }: { onImport: () => void }) {
   const [error, setError] = useState<string | null>(null)
