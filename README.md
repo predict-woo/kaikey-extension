@@ -102,6 +102,12 @@ the resulting `.zip` (renamed to `.xpi`).
 4. Back in the popup, click "Upload QR screenshot" and pick the image.
 5. The popup will switch to the registered view once the handshake succeeds.
 
+On Firefox and Chrome on Linux, "Upload QR screenshot" first opens a separate
+window so the file picker cannot dismiss the toolbar popup during setup.
+Click "Upload QR screenshot" again in that window to pick the image. The
+window closes on success; reopen Kaikey to see the registered view. Errors
+remain visible in the upload window.
+
 After that, visit any KAIST page that redirects through SSO. Kaikey logs you
 in.
 
